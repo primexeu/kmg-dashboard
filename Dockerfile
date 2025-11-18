@@ -38,7 +38,7 @@ RUN npm run build
 # ---------------------------------------------
 # Final image — Nginx + PHP-FPM
 # ---------------------------------------------
-FROM webdevops/php-nginx:8.2
+FROM webdevops/php-nginx:8.3
 
 ENV APP_ENV=production \
     APP_DEBUG=false \
