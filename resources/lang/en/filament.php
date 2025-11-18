@@ -1,0 +1,51 @@
+<?php
+
+return [
+    // Common Filament terms
+    'actions' => 'Actions',
+    'create' => 'Create',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'view' => 'View',
+    'save' => 'Save',
+    'cancel' => 'Cancel',
+    'close' => 'Close',
+    'back' => 'Back',
+    'next' => 'Next',
+    'previous' => 'Previous',
+    'search' => 'Search',
+    'filter' => 'Filter',
+    'export' => 'Export',
+    'import' => 'Import',
+    'refresh' => 'Refresh',
+    'loading' => 'Loading...',
+    'no_results' => 'No results found',
+    'dashboard' => 'Dashboard',
+    'settings' => 'Settings',
+    'profile' => 'Profile',
+    'logout' => 'Logout',
+    'login' => 'Login',
+    'register' => 'Register',
+    'email' => 'Email',
+    'password' => 'Password',
+    'name' => 'Name',
+    'role' => 'Role',
+    'status' => 'Status',
+    'created_at' => 'Created At',
+    'updated_at' => 'Updated At',
+    
+    // Navigation groups
+    'order_processing' => 'Order Processing',
+    'invoice_processing' => 'Invoice Processing',
+    'knowledge_base' => 'Knowledge Base',
+    'administration' => 'Administration',
+    
+    // Resources
+    'orders' => 'Orders',
+    'order_confirmations' => 'Order Confirmations',
+    'matches' => 'Matches',
+    'exceptions' => 'Exceptions',
+    'invoices' => 'Invoices',
+    'users' => 'Users',
+    'documents' => 'Documents',
+];

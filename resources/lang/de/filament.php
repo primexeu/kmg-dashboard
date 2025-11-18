@@ -1,0 +1,51 @@
+<?php
+
+return [
+    // Common Filament terms
+    'actions' => 'Aktionen',
+    'create' => 'Erstellen',
+    'edit' => 'Bearbeiten',
+    'delete' => 'Löschen',
+    'view' => 'Anzeigen',
+    'save' => 'Speichern',
+    'cancel' => 'Abbrechen',
+    'close' => 'Schließen',
+    'back' => 'Zurück',
+    'next' => 'Weiter',
+    'previous' => 'Vorherige',
+    'search' => 'Suchen',
+    'filter' => 'Filtern',
+    'export' => 'Exportieren',
+    'import' => 'Importieren',
+    'refresh' => 'Aktualisieren',
+    'loading' => 'Lädt...',
+    'no_results' => 'Keine Ergebnisse gefunden',
+    'dashboard' => 'Dashboard',
+    'settings' => 'Einstellungen',
+    'profile' => 'Profil',
+    'logout' => 'Abmelden',
+    'login' => 'Anmelden',
+    'register' => 'Registrieren',
+    'email' => 'E-Mail',
+    'password' => 'Passwort',
+    'name' => 'Name',
+    'role' => 'Rolle',
+    'status' => 'Status',
+    'created_at' => 'Erstellt am',
+    'updated_at' => 'Aktualisiert am',
+    
+    // Navigation groups
+    'order_processing' => 'Bestellabwicklung',
+    'invoice_processing' => 'Rechnungsabwicklung',
+    'knowledge_base' => 'Wissensdatenbank',
+    'administration' => 'Administration',
+    
+    // Resources
+    'orders' => 'Bestellungen',
+    'order_confirmations' => 'Bestellbestätigungen',
+    'matches' => 'Abgleiche',
+    'exceptions' => 'Ausnahmen',
+    'invoices' => 'Rechnungen',
+    'users' => 'Benutzer',
+    'documents' => 'Dokumente',
+];
