@@ -4,6 +4,8 @@
 FROM composer:2 AS vendor
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y libicu-dev git unzip && docker-php-ext-install intl
+
 COPY composer.json composer.lock ./
 RUN composer install \
     --no-dev \
@@ -42,6 +44,9 @@ ENV APP_ENV=production \
     WEB_DOCUMENT_INDEX=index.php
 
 WORKDIR /app
+
+# Ensure intl extension is available at runtime
+RUN apt-get update && apt-get install -y libicu-dev && docker-php-ext-install intl
 
 # Install Composer (runtime) for artisan commands that rely on it
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
