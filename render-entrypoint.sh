@@ -43,11 +43,36 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
+# Wait for database to be ready
+wait_for_db() {
+  echo "[entrypoint] waiting for database connection..."
+  local max_attempts=30
+  local attempt=1
+  
+  while [ $attempt -le $max_attempts ]; do
+    if php artisan tinker --execute="DB::connection()->getPdo(); echo 'Database connected';" >/dev/null 2>&1; then
+      echo "[entrypoint] database connection established"
+      return 0
+    fi
+    
+    echo "[entrypoint] database not ready, attempt $attempt/$max_attempts"
+    sleep 2
+    attempt=$((attempt + 1))
+  done
+  
+  echo "[entrypoint] failed to connect to database after $max_attempts attempts"
+  return 1
+}
+
 if [ "${RUN_MIGRATIONS}" = "true" ]; then
-  echo "[entrypoint] running database migrations"
-  php artisan migrate --force
-  echo "[entrypoint] clearing database cache after migrations"
-  php artisan cache:clear >/dev/null 2>&1 || true
+  if wait_for_db; then
+    echo "[entrypoint] running database migrations"
+    php artisan migrate --force
+    echo "[entrypoint] clearing database cache after migrations"
+    php artisan cache:clear >/dev/null 2>&1 || true
+  else
+    echo "[entrypoint] skipping migrations due to database connection failure"
+  fi
 else
   echo "[entrypoint] skipping database migrations (RUN_DB_MIGRATIONS=${RUN_MIGRATIONS})"
 fi
