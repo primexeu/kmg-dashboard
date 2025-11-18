@@ -11,14 +11,16 @@ RUN composer install \
     --no-dev \
     --prefer-dist \
     --no-interaction \
-    --no-progress
+    --no-progress \
+    --no-scripts
 
 COPY . .
 RUN composer install \
     --no-dev \
     --prefer-dist \
     --no-interaction \
-    --no-progress
+    --no-progress \
+    && composer run-script post-autoload-dump
 
 # ---------------------------------------------
 # Stage 2 — Front-end assets
