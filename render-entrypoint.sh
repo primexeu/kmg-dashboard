@@ -29,12 +29,11 @@ if [ -z "${APP_KEY:-}" ]; then
   export APP_KEY="$(php artisan key:generate --show)"
 fi
 
-# Clear all caches to ensure fresh start
-echo "[entrypoint] clearing all caches"
+# Clear all caches to ensure fresh start (avoid database-dependent operations)
+echo "[entrypoint] clearing file-based caches"
 php artisan config:clear
 php artisan route:clear
 php artisan view:clear
-php artisan cache:clear
 rm -f bootstrap/cache/packages.php bootstrap/cache/services.php
 
 # Rebuild package discovery and caches
@@ -47,6 +46,8 @@ php artisan view:cache
 if [ "${RUN_MIGRATIONS}" = "true" ]; then
   echo "[entrypoint] running database migrations"
   php artisan migrate --force
+  echo "[entrypoint] clearing database cache after migrations"
+  php artisan cache:clear >/dev/null 2>&1 || true
 else
   echo "[entrypoint] skipping database migrations (RUN_DB_MIGRATIONS=${RUN_MIGRATIONS})"
 fi
