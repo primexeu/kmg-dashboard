@@ -1,3 +1,9 @@
+databases:
+  - name: kmg-mysql-db
+    databaseName: kmg_dashboard
+    user: kmg_user
+    plan: free
+
 services:
   - type: web
     name: kmg-laravel-web
@@ -11,21 +17,34 @@ services:
       - key: APP_DEBUG
         value: false
       - key: APP_URL
-        sync: false
+        fromService:
+          type: web
+          name: kmg-laravel-web
+          property: host
       - key: APP_KEY
-        sync: false
+        generateValue: true
       - key: DB_CONNECTION
         value: mysql
       - key: DB_HOST
-        sync: false
+        fromDatabase:
+          name: kmg-mysql-db
+          property: host
       - key: DB_PORT
-        value: "3306"
+        fromDatabase:
+          name: kmg-mysql-db
+          property: port
       - key: DB_DATABASE
-        sync: false
+        fromDatabase:
+          name: kmg-mysql-db
+          property: databaseName
       - key: DB_USERNAME
-        sync: false
+        fromDatabase:
+          name: kmg-mysql-db
+          property: user
       - key: DB_PASSWORD
-        sync: false
+        fromDatabase:
+          name: kmg-mysql-db
+          property: password
       - key: QUEUE_CONNECTION
         value: database
       - key: CACHE_DRIVER
@@ -33,7 +52,7 @@ services:
       - key: SESSION_DRIVER
         value: file
       - key: PYTHON_API_URL
-        sync: false
+        value: "https://your-python-api.onrender.com"
       - key: RUN_DB_MIGRATIONS
         value: "true"
 
@@ -53,20 +72,33 @@ services:
       - key: APP_DEBUG
         value: false
       - key: APP_URL
-        sync: false
+        fromService:
+          type: web
+          name: kmg-laravel-web
+          property: host
       - key: APP_KEY
-        sync: false
+        generateValue: true
       - key: DB_CONNECTION
         value: mysql
       - key: DB_HOST
-        sync: false
+        fromDatabase:
+          name: kmg-mysql-db
+          property: host
       - key: DB_PORT
-        value: "3306"
+        fromDatabase:
+          name: kmg-mysql-db
+          property: port
       - key: DB_DATABASE
-        sync: false
+        fromDatabase:
+          name: kmg-mysql-db
+          property: databaseName
       - key: DB_USERNAME
-        sync: false
+        fromDatabase:
+          name: kmg-mysql-db
+          property: user
       - key: DB_PASSWORD
-        sync: false
+        fromDatabase:
+          name: kmg-mysql-db
+          property: password
       - key: PYTHON_API_URL
-        sync: false
+        value: "https://your-python-api.onrender.com"
