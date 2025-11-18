@@ -4,7 +4,7 @@
 FROM composer:2 AS vendor
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y libicu-dev git unzip && docker-php-ext-install intl
+RUN apk add --no-cache icu-dev git unzip && docker-php-ext-install intl
 
 COPY composer.json composer.lock ./
 RUN composer install \
@@ -23,7 +23,7 @@ RUN composer install \
 # ---------------------------------------------
 # Stage 2 — Front-end assets
 # ---------------------------------------------
-FROM node:18-alpine AS frontend
+FROM node:20-alpine AS frontend
 WORKDIR /app
 
 COPY package.json package-lock.json vite.config.js postcss.config.js tailwind.config.js ./
